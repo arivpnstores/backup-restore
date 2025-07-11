@@ -92,6 +92,8 @@ botBackup() {
     switch=on
     bottoken=7113550046:AAHnAaNDdndh8R4fbfIELwDH6W1Dwcn4Lx8
     adminid=1962241851
+CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
+KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
     echo -e "[ ${green}INFO${NC} ] Create password "
 	if [[ -z $InputPass ]]; then
 	InputPass="Ari123Ok"
