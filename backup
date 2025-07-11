@@ -120,7 +120,7 @@ cp -r /etc/limit backup/qt/ &>/dev/null
 cp -r /etc/ssh backup/ssh &>/dev/null
 cp -r /var/lib/kyt/ backup/kyt  &>/dev/null
 cp -r /etc/xray backup/xray &>/dev/null 
-#cp -r /var/www/html/ backup/html &>/dev/null
+cp -r /var/www/html/ backup/html &>/dev/null
 cp -r /etc/banner.txt backup/banner.txt &>/dev/null
 cp -r /etc/kyt/limit backup/limit &>/dev/null
 cp -r /etc/vmess backup/vmess &>/dev/null
