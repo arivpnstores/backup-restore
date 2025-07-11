@@ -27,7 +27,7 @@ function baris_panjang() {
 
 function ARI_Banner() {
 line_atas
-echo -e     "\e[36m        .::. \033[0;35mBACKUP AND RESTORE \e[36m.::.        \033[0m"
+echo -e     "\e[36m     .::. \033[0;35mBACKUP AND RESTORE \e[36m.::.     \033[0m"
 line_bawah
 }
 
