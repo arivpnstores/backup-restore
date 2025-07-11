@@ -22,7 +22,7 @@ function baris_panjang() {
 
 function ARI_Banner() {
 baris_panjang
-NAMASC="ARISCTUNNEL V4"
+NAMASC="BACKUP AND RESTORE"
 function center_text() {
     local text="$1"
     local width=50  # Sesuaikan dengan panjang baris yang diinginkan
@@ -35,7 +35,7 @@ function center_text() {
     # Tampilkan teks dengan warna dan centering yang benar
     printf "%${spaces}s%s\033[0m\n" "" "$(echo -e "$text")"
 }
-# Kombinasi warna untuk ".::." dan "ARISCTUNNEL V4"
+# Kombinasi warna untuk ".::." dan "BACKUP AND RESTORE"
 formatted_text="\e[36m.::.\033[0;35m $NAMASC \e[36m.::."
 # Tampilkan teks yang diformat
 center_text "$formatted_text"
@@ -57,7 +57,7 @@ function center_text() {
     # Tampilkan teks dengan warna dan centering yang benar
     printf "%${spaces}s%s\033[0m\n" "" "$(echo -e "$text")"
 }
-# Kombinasi warna untuk ".::." dan "ARISCTUNNEL V4"
+# Kombinasi warna untuk ".::." dan "BACKUP AND RESTORE"
 formatted_text="\033[0;35m Terimakasih sudah menggunakan- \033[0m"
 formatted_text1="\033[0;35m Script Credit By $NAMASC \033[0m"
 # Tampilkan teks yang diformat

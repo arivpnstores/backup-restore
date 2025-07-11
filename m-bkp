@@ -1,0 +1,122 @@
+#!/bin/bash
+
+
+BlueCyan='\e[5;36m'
+Xark='\e[0m'
+ungu='\033[0;35m'
+yellow='\e[33m'
+WhiteBe='\e[5;37m'
+GreenBe='\e[5;32m'
+BlueCyan='\e[5;36m'
+Xark='\e[0m'
+g="\e[36m"
+gb='\033[0;37m'
+NC='\e[0m'
+clear
+
+# . Liner 
+function line_atas(){
+echo -e " \033[0;36m┌─────────────────────────────────────┐\033[0m"
+}
+function line_bawah() {
+echo -e " \033[0;36m└─────────────────────────────────────┘\033[0m"
+}
+function baris_panjang() {
+   echo -e "\033[5;36m ———————————————————————————————————————————————\033[0m"
+}
+
+function ARI_Banner() {
+line_atas
+echo -e     "\e[36m        .::. \033[0;35mBACKUP AND RESTORE \e[36m.::.        \033[0m"
+line_bawah
+}
+
+function Sc_Credit(){
+sleep 1
+baris_panjang
+function center_text() {
+    local text="$1"
+    local width=50  # Sesuaikan dengan panjang baris yang diinginkan
+
+    # Hapus kode warna untuk menghitung panjang sebenarnya dari teks
+    local plain_text=$(echo -e "$text" | sed 's/\x1b\[[0-9;]*m//g')
+    local len=${#plain_text}
+    local spaces=$(( (width - len) / 2 ))
+
+    # Tampilkan teks dengan warna dan centering yang benar
+    printf "%${spaces}s%s\033[0m\n" "" "$(echo -e "$text")"
+}
+# Kombinasi warna untuk ".::." dan "BACKUP AND RESTORE"
+formatted_text="\033[0;35m Terimakasih sudah menggunakan- \033[0m"
+formatted_text1="\033[0;35m Script Credit By $NAMASC \033[0m"
+# Tampilkan teks yang diformat
+center_text "$formatted_text"
+center_text "$formatted_text1"
+baris_panjang
+}
+clear
+
+function Backup_Vps() {
+  wget -O backup.sh https://raw.githubusercontent.com/arivpnstores/backup-restore/main/backup && chmod +x backup.sh && ./backup.sh
+}
+
+
+function Restore_Vps() {
+ wget -O restore.sh https://raw.githubusercontent.com/arivpnstores/backup-restore/main/restore && chmod +x restore.sh && ./restore.sh
+}
+
+
+function Auto_Backup_Vps() {
+# Unduh script backup
+wget -O /root/backup.sh https://raw.githubusercontent.com/arivpnstores/backup-restore/main/backup
+
+# Beri izin eksekusi
+chmod +x /root/backup.sh
+
+# Tambahkan cron job untuk auto-backup setiap 3 jam
+croncmd="/root/backup.sh"
+cronjob="0 */3 * * * $croncmd"
+
+# Cek apakah sudah ada di crontab
+crontab -l 2>/dev/null | grep -F "$croncmd" >/dev/null
+if [ $? -eq 0 ]; then
+    echo "Cron job sudah ada, tidak ditambahkan ulang."
+else
+    (crontab -l 2>/dev/null; echo "$cronjob") | crontab -
+    echo "✅ Cron job ditambahkan: setiap 3 jam menjalankan backup.sh"
+fi
+
+# Jalankan backup pertama kali
+echo "🔄 Menjalankan backup pertama kali..."
+/root/backup.sh
+}
+
+
+function Banner() {
+  line_atas
+echo -e     "\033[0;35m         Menu Backup And Restore       \e[36m"
+  line_bawah
+}
+
+
+function Menu_Features() {
+  ARI_Banner
+  Banner
+  line_atas
+echo -e " ${g}│  ${gb}[01] • $NC ${g}Backup Vps Data"
+echo -e " ${g}│  ${gb}[02] • $NC ${g}Restore Vps Data"
+echo -e " ${g}│  ${gb}[03] • $NC ${g}Auto Backup Vps"
+line_bawah
+line_atas
+echo -e " ${g}│   ${gb}[b] • $NC ${g}Back to Menu"
+echo -e " ${g}│   ${gb}[x] • $NC ${g}EXIT"
+line_bawah
+}
+Menu_Features
+read -p "Select [1/3 or x] :  " Ltt
+case $Ltt in
+1) clear ; Backup_Vps ;;
+2) clear ; Restore_Vps ;;
+3) clear ; Auto_Backup_Vps ;;
+*) exit ;;
+esac
